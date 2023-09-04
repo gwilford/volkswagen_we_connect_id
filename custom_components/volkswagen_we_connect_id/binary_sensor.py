@@ -89,30 +89,6 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         on_value=WindowHeatingStatus.Window.WindowHeatingState.ON,
     ),
     VolkswagenIdBinaryEntityDescription(
-        key="insufficientBatteryLevelWarning",
-        name="Insufficient Battery Level Warning",
-        icon="mdi:battery-alert-variant-outline",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionWarning.insufficientBatteryLevelWarning,
-    ),
-    VolkswagenIdBinaryEntityDescription(
-        name="Car Is Online",
-        key="isOnline",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionState.isOnline,
-        device_class=BinarySensorDeviceClass.CONNECTIVITY,
-    ),
-    VolkswagenIdBinaryEntityDescription(
-        name="Car Is Active",
-        key="isActive",
-        icon="mdi:car-side",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionState.isActive,
-    ),
-    VolkswagenIdBinaryEntityDescription(
         name="Lights Right",
         key="lightsRight",
         icon="mdi:car-light-dimmed",

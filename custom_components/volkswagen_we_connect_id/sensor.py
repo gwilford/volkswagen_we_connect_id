@@ -48,15 +48,6 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         ].climatisationState.value,
     ),
     VolkswagenIdEntityDescription(
-        key="remainingClimatisationTime_min",
-        name="Remaining Climatisation Time",
-        icon="mdi:fan-clock",
-        native_unit_of_measurement=TIME_MINUTES,
-        value=lambda data: data["climatisation"][
-            "climatisationStatus"
-        ].remainingClimatisationTime_min.value,
-    ),
-    VolkswagenIdEntityDescription(
         key="targetTemperature",
         name="Target Temperature",
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -66,58 +57,10 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         ].targetTemperature_C.value,
     ),
     VolkswagenIdEntityDescription(
-        key="unitInCar",
-        name="Unit In car",
-        value=lambda data: data["climatisation"][
-            "climatisationSettings"
-        ].unitInCar.value,
-    ),
-    VolkswagenIdEntityDescription(
         key="chargingState",
         name="Charging State",
         icon="mdi:ev-station",
         value=lambda data: data["charging"]["chargingStatus"].chargingState.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="remainingChargingTimeToComplete_min",
-        name="Remaining Charging Time",
-        icon="mdi:battery-clock",
-        native_unit_of_measurement=TIME_MINUTES,
-        value=lambda data: data["charging"][
-            "chargingStatus"
-        ].remainingChargingTimeToComplete_min.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="chargeMode",
-        name="Charging Mode",
-        icon="mdi:ev-station",
-        value=lambda data: data["charging"]["chargingStatus"].chargeMode.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="chargePower_kW",
-        name="Charge Power",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        value=lambda data: data["charging"]["chargingStatus"].chargePower_kW.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="chargeRate_kmph",
-        name="Charge Rate",
-        native_unit_of_measurement=SPEED_KILOMETERS_PER_HOUR,
-        device_class=SensorDeviceClass.SPEED,
-        value=lambda data: data["charging"]["chargingStatus"].chargeRate_kmph.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="chargingSettings",
-        name="Charging Settings",
-        icon="mdi:ev-station",
-        value=lambda data: data["charging"]["chargingStatus"].chargingSettings.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="chargeType",
-        name="Charge Type",
-        icon="mdi:ev-station",
-        value=lambda data: data["charging"]["chargingStatus"].chargeType.value,
     ),
     VolkswagenIdEntityDescription(
         key="maxChargeCurrentAC",
@@ -126,13 +69,6 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         value=lambda data: data["charging"][
             "chargingSettings"
         ].maxChargeCurrentAC.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="targetSOC_pct",
-        name="Target State of Charge",
-        device_class=SensorDeviceClass.BATTERY,
-        native_unit_of_measurement=PERCENTAGE,
-        value=lambda data: data["charging"]["chargingSettings"].targetSOC_pct.value,
     ),
     VolkswagenIdEntityDescription(
         key="currentSOC_pct",
@@ -317,22 +253,6 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         name="Overall Status",
         icon="mdi:car-info",
         value=lambda data: data["access"]["accessStatus"].overallStatus.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="autoUnlockPlugWhenCharged",
-        name="Auto Unlock Plug When Charged",
-        icon="mdi:ev-plug-type2",
-        value=lambda data: data["charging"][
-            "chargingSettings"
-        ].autoUnlockPlugWhenCharged.value,
-    ),
-    VolkswagenIdEntityDescription(
-        key="autoUnlockPlugWhenChargedAC",
-        name="Auto Unlock Plug When Charged AC",
-        icon="mdi:ev-plug-type2",
-        value=lambda data: data["charging"][
-            "chargingSettings"
-        ].autoUnlockPlugWhenChargedAC.value,
     ),
     VolkswagenIdEntityDescription(
         key="plugConnectionState",
