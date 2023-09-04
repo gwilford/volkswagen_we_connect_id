@@ -36,49 +36,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         async_add_entities(entities)
 
 
-class TargetSoCNumber(VolkswagenIDBaseEntity, NumberEntity):
-    """Representation of a Target SoC entity."""
-
-    _attr_entity_category = EntityCategory.CONFIG
-
-    def __init__(
-        self,
-        we_connect: weconnect.WeConnect,
-        coordinator: DataUpdateCoordinator,
-        index: int,
-    ) -> None:
-        """Initialize VolkswagenID vehicle sensor."""
-        super().__init__(we_connect, coordinator, index)
-
-        self._coordinator = coordinator
-        self._attr_name = f"{self.data.nickname} Target State Of Charge"
-        self._attr_unique_id = f"{self.data.vin}-target_state_of_charge"
-        self._attr_icon = "mdi:battery"
-        self._we_connect = we_connect
-        self._attr_native_min_value = 10
-        self._attr_native_max_value = 100
-        self._attr_native_step = 10
-
-    @property
-    def native_value(self) -> float | None:
-        """Return the value reported by the number."""
-        return int(
-            get_object_value(
-                self.data.domains["charging"]["batteryStatus"].currentSOC_pct.value
-            )
-        )
-
-    async def async_set_native_value(self, value: float) -> None:
-        """Update the current value."""
-        if value > 10:
-            await self.hass.async_add_executor_job(
-                set_target_soc,
-                self.data.vin.value,
-                self._we_connect,
-                value,
-            )
-
-
 class TargetClimateNumber(VolkswagenIDBaseEntity, NumberEntity):
     """Representation of a Target Climate entity."""
 
