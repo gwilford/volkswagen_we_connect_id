@@ -30,7 +30,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     entities = []
 
     for index, vehicle in enumerate(coordinator.data):
-        entities.append(TargetSoCNumber(we_connect, coordinator, index))
         entities.append(TargetClimateNumber(we_connect, coordinator, index))
     if entities:
         async_add_entities(entities)
