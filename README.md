@@ -1,3 +1,5 @@
+**For Volkswagon vehicles other than ID - tested with Golf GTE hybrid**
+
 # Volkswagen We Connect ID [ONLY FOR EUROPE]
 _Volkswagen We Connect ID sensor provides statistics from the Volkswagen ID Api thru [WeConnect-python lib](https://pypi.org/project/weconnect/)._
 
